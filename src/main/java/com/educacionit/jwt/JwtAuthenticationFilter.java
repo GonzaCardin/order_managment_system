@@ -41,7 +41,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             jwtService.isTokenExpired(token);
         } catch (Exception e) {
             filterChain.doFilter(request, response);
+            return;
         }
+
         username = jwtService.getUsernameFromToken(token);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -64,15 +66,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return authHeader.substring(7);
         }
 
-        Cookie[] cookie = request.getCookies();
-        if (request.getCookies() != null) {
-            for (Cookie c : cookie) {
-                if ("auth_token".equals("auth_token")) {
-                    return c.getValue();
-
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("auth_token".equals(cookie.getName())) {
+                    return cookie.getValue();
                 }
             }
-
         }
 
         return null;
