@@ -21,27 +21,19 @@ public class SecurityConfig {
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
-
-    @SuppressWarnings("deprecation")
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(crsf -> crsf.disable())
-                .authorizeRequests(
-                    authRequest -> authRequest
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/orders/create","/orders/update","/orders/delete").hasRole("ADMIN")
-                        .requestMatchers("/orders/**","/members/update").hasRole("USER")
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(
-                    sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authRequest -> authRequest
+                        .requestMatchers("/auth/**", "/login").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(sessionManager -> sessionManager
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(
-                    exceptionHandling -> exceptionHandling.accessDeniedHandler(accessDeniedHandler())
-                )
+                .exceptionHandling(exceptionHandler -> exceptionHandler
+                        .accessDeniedHandler(accessDeniedHandler()))
                 .build();
     }
 

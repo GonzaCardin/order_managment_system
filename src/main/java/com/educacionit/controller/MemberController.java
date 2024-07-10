@@ -30,7 +30,7 @@ public class MemberController {
         if (member != null) {
             return ResponseEntity.ok(member);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.internalServerError().build();
     }
 
     // updateMember
@@ -40,7 +40,7 @@ public class MemberController {
         if (member != null) {
             return ResponseEntity.ok(member);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.internalServerError().build();
     }
 
     // deleteMember
@@ -50,7 +50,7 @@ public class MemberController {
         if (memberId != null) {
             return ResponseEntity.ok(memberId);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.internalServerError().build();
     }
 
     // getMember
@@ -60,7 +60,7 @@ public class MemberController {
         if (member != null) {
             return ResponseEntity.ok(member);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.internalServerError().build();
     }
 
     // getMembers
@@ -82,7 +82,7 @@ public class MemberController {
         if (member != null) {
             return ResponseEntity.ok(member);
         }
-        return ResponseEntity.status(404).build();
+        return ResponseEntity.internalServerError().build();
     }
 
 }
