@@ -31,11 +31,24 @@ public class Member implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "first_name", nullable = false, length = 255)
     private String firstName;
+    @Column(name = "last_name", nullable = false, length = 255)
     private String lastName;
+    @Column(name = "gender", nullable = false, length = 50)
+    private String gender;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
+    @Column(name = "phone", nullable = false, length = 50)
+    private String phone;
+    @Column(name = "address", nullable = false, length = 255)
+    private String address;
+    @Column(name = "country", nullable = false, length = 255)
+    private String country;
+    @Column(name = "join_date")
     private LocalDate joinDate;
     private Boolean status;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 200)
     private String email;
     @Column(nullable = false)
     private String password;

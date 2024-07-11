@@ -1,5 +1,6 @@
 package com.educacionit.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,8 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
+    @Column(name = "discount", nullable = false)
     private Double discount;
 }

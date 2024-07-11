@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
+
 import com.educacionit.jwt.JwtService;
 import com.educacionit.model.AuthResponse;
 import com.educacionit.model.Member;
@@ -53,9 +55,20 @@ public class AuthService {
         member.setLastName(request.getLastname());
         member.setJoinDate(LocalDate.now());
         member.setStatus(true);
+        member.setAddress(request.getAddress());
+        member.setCountry(request.getCountry());
+        member.setGender(request.getGender());
+        member.setPhone(request.getPhone());
+        member.setBirthDate(request.getBirthDate());
 
-        Role defaultRole = roleRepository.findByName("USER").orElseThrow();
-        member.addRole(defaultRole);
+
+        Optional<Role> defaultRole = roleRepository.findByName("USER");
+        member.addRole(defaultRole.get());
+
+        if(request.getRole() != null){
+            Role role = roleRepository.findByName(request.getRole()).orElseThrow();
+            member.addRole(role);
+        }
 
         memberRepository.save(member);
 

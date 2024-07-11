@@ -26,41 +26,45 @@ public class MemberController {
     // addMember
     @PostMapping("/create")
     public ResponseEntity<Member> addMember(@RequestBody MemberDTO memberDTO) {
-        Member member = memberService.addMember(memberDTO);
-        if (member != null) {
+        try {
+            Member member = memberService.addMember(memberDTO);
             return ResponseEntity.ok(member);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.internalServerError().build();
     }
 
     // updateMember
     @PutMapping("/update/{id}")
-    public ResponseEntity<Member> updateMember(@PathVariable Long id,@RequestBody MemberDTO memberDTO) {
-        Member member = memberService.updateMember(id, memberDTO);
-        if (member != null) {
+    public ResponseEntity<Member> updateMember(@PathVariable Long id, @RequestBody MemberDTO memberDTO) {
+        try {
+            Member member = memberService.updateMember(id, memberDTO);
             return ResponseEntity.ok(member);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.internalServerError().build();
     }
 
     // deleteMember
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Long> deleteMember(@PathVariable Long id) {
-        Long memberId = memberService.deleteMember(id);
-        if (memberId != null) {
-            return ResponseEntity.ok(memberId);
+        try {
+            memberService.deleteMember(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.internalServerError().build();
     }
 
     // getMember
     @GetMapping("/{id}")
     public ResponseEntity<Member> getMember(@PathVariable Long id) {
-        Member member = memberService.getMember(id);
-        if (member != null) {
+        try {
+            Member member = memberService.getMember(id);
             return ResponseEntity.ok(member);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.internalServerError().build();
     }
 
     // getMembers
@@ -78,11 +82,12 @@ public class MemberController {
     // getMembersByFullName
     @GetMapping("/fullname/{firstName}/{lastName}")
     public ResponseEntity<Member> getMemberByFullName(@PathVariable String firstName, @PathVariable String lastName) {
-        Member member = memberService.getMemberByFullName(firstName, lastName);
-        if (member != null) {
+        try {
+            Member member = memberService.getMemberByFullName(firstName, lastName);
             return ResponseEntity.ok(member);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.internalServerError().build();
     }
 
 }
