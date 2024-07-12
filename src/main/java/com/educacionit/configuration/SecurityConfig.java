@@ -29,8 +29,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest -> authRequest
                         .requestMatchers("/auth/**", "/login").permitAll()
-                        .requestMatchers("/orders/create", "/orders/update", "/orders/delete").hasRole("ADMIN")
-                        .requestMatchers("/orders/**", "/members/update").hasRole("USER")
+                        // .requestMatchers("/orders/create", "/orders/update", "/orders/delete").hasRole("ADMIN")
+                        // .requestMatchers("/orders/**", "/members/update").hasRole("USER")
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ public class OrderResource {
 
     // create Order
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderService.createOrder(orderDTO);
@@ -37,6 +39,7 @@ public class OrderResource {
     }
 
     // update Order
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
         try {
@@ -48,6 +51,7 @@ public class OrderResource {
     }
 
     // delete Order
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Long> deleteOrder(@PathVariable Long id) {
         try {
@@ -60,6 +64,7 @@ public class OrderResource {
 
     // get all Orders
     @GetMapping("/")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<List<Order>> getOrders() {
         List<Order> orders = orderService.getAllOrders();
         return ResponseEntity.ok(orders);
@@ -67,6 +72,7 @@ public class OrderResource {
 
     // get Order by Id
     @GetMapping("/order/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<Order> getOrder(@PathVariable Long id) {
         try {
             Order order = orderService.getOrder(id);
@@ -79,6 +85,7 @@ public class OrderResource {
 
     // get Orders by members Id
     @GetMapping("/member/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<List<Order>> getOrdersByMember(@PathVariable Long id) {
         List<Order> orders = orderService.getOrdersByMember(id);
         return ResponseEntity.ok(orders);
