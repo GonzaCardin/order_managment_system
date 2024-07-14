@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "c96e2139-b058-4812-aefb-17bb85ca8794",
+		"name": "Security O&M",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33759847"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"educardin@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Eduardo\",\r\n    \"lastname\": \"Cardin\",\r\n    \"gender\": \"Man\",\r\n    \"birthDate\": \"2001-12-26\",\r\n    \"phone\": \"+543425050415\",\r\n    \"address\": \"San Martin 234\",\r\n    \"country\": \"Argentina\",\r\n    \"email\": \"educardin@gmail.com\",\r\n    \"password\": \"1234\"\r\n    // \"role\" : \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/register"
+			},
+			"response": []
+		}
+	]
+}
