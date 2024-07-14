@@ -82,6 +82,9 @@ public class MemberService {
     public Long deleteMember(Long id) {
         Optional<Member> memberOpt = memberRepository.findById(id);
         if (memberOpt.isPresent()) {
+            Member member = memberOpt.get();
+            member.getRoles().clear();
+            memberRepository.save(member);
             memberRepository.deleteById(id);
             return id;
         }
