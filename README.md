@@ -21,7 +21,6 @@ The Order Management System is a microservices-based application that allows use
 - **POST /login/**:
 - **POST /register/**:
 
-
 ## ORDERS
 
 - **GET /orders/**:
