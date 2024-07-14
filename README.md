@@ -14,9 +14,6 @@ The Order Management System is a microservices-based application that allows use
 - **REST API**: For communication between client and server.
 - **Postman**: For testing API endpoints.
 
-
-
-
 ## Main Endpoins
 
 ## Authentication
