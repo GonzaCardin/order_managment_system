@@ -31,7 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**", "/login").permitAll()
                         .requestMatchers("/orders/create", "/orders/update/**", "/orders/delete/**").hasRole("ADMIN")
                         // .requestMatchers("/orders/**", "/members/update").hasRole("USER")
-                        .anyRequest().authenticated())
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .anyRequest().permitAll())
                 .sessionManagement(sessionManager -> sessionManager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
