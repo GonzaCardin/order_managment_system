@@ -53,3 +53,6 @@ Upon successful login, a JWT token is returned, which should be included in the 
 
 - **ADMIN**: Full access to manage orders and members.
 - **USER**: Access to search and view orders.
+
+### Documentation
+- **/swagger-ui.html** Swagger Documentation
