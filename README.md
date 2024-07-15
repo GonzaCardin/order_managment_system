@@ -37,6 +37,8 @@ The Order Management System is a microservices-based application that allows use
 - Java 17 or higher
 - Maven
 - MYSQL (or your chosen database)
+-   -> CREATE DATABASE ordersManagement.  <- Use this dml in MYSQL
+-   ->Change in application properties to your username and password database.
 - IDE (e.g., IntelliJ, Eclipse, VScode)
 
 ## Security and Authentication
